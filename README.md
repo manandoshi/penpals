@@ -23,25 +23,25 @@ pip install -U -r requirements.txt
 
 # Final Directory Structure:
 
-penpals
-|_README.md
-|_requirements.txt
-|_project
-	|_manage.py
-	|_project
-	|	|_ __init__.py
-	|	|_ settings.py
-	|	|_ urls.py
-	|	|_ wsgi.py
-	|_penpals
-		|_ admin.py
-		|_ apps.py
-		|_ models.py
-		|_ tests.py
-		|_ views.py
-		|_migrations
-		|	|_ __init__.py
-		|_static
-		|	|_penpals
-		|_templates
-			|_penpals
+penpals  
+|_README.md  
+|_requirements.txt  
+|_project  
+	|_manage.py  
+	|_project  
+	|	|_ \_\_init\_\_.py  
+	|	|_ settings.py  
+	|	|_ urls.py  
+	|	|_ wsgi.py  
+	|_penpals  
+		|_ admin.py  
+		|_ apps.py  
+		|_ models.py  
+		|_ tests.py  
+		|_ views.py  
+		|_migrations  
+		|	|_ \_\_init\_\_.py  
+		|_static  
+		|	|_penpals  
+		|_templates  
+			|_penpals  
