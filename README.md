@@ -3,19 +3,19 @@
 # Instructions:
 
 1. Pull the repo
-'''
+```
 git pull https://github.com/manandoshi/penpals
-'''
+```
 
 2. Make it a virtual environment
-'''
+```
 virtualenv .
-'''
+```
 
 3.  Install the dependancies
-'''
+```
 pip install -U -r requirements.txt
-'''
+```
 
 **DO NOT** *git add the virtualenv folders (bin, usr, lib, local etc)*
 
