@@ -1,0 +1,14 @@
+#ignoring pyc
+**/*.pyc
+./bin
+./usr
+./lib
+./local
+./include
+./lib64
+bin
+usr
+lib
+local
+include
+lib64
