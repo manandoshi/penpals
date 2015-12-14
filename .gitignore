@@ -1,5 +1,6 @@
 #ignoring pyc
 **/*.pyc
+*.pyc
 ./bin
 ./usr
 ./lib
@@ -15,3 +16,4 @@ lib64
 project/penpals/migrations
 project/penpals/*.pyc
 project/project/*.pyc
+project/project/settings.py
