@@ -18,4 +18,3 @@ class Applicant(models.Model):
 	cooking = models.BooleanField(default = False)
 	collection = models.BooleanField(default = False)
 	music = models.CommaSeparatedIntegerField(max_length = 20) 
-	#here i put sports = models.CommaSepajdgjorsthotsrField(max_length = 10)

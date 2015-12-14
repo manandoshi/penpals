@@ -12,3 +12,6 @@ lib
 local
 include
 lib64
+project/penpals/migrations
+project/penpals/*.pyc
+project/project/*.pyc

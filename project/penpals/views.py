@@ -3,12 +3,12 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-#from .models import Applicant
+from .models import Applicant
 
 # Create your views here.
 
 def register(request):
-	template = loader.get_template('register.html')
+	template = loader.get_template('penpals/register.html')
 	return HttpResponse(template.render({}))
 
 def result(request):
@@ -18,7 +18,7 @@ def result(request):
 		random = request.POST("random")
 	except:
 		#display get request result
-		template = loader.get_template('result.html')
+		template = loader.get_template('penpals/result.html')
 		return HttpResponse(template.render({}))
 	else:
 		#add entry to db
