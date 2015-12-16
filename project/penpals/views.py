@@ -9,17 +9,19 @@ from .models import Applicant
 
 def register(request):
 	template = loader.get_template('penpals/register.html')
-	return HttpResponse(template.render({}))
+	context = RequestContext(request, {},)
+	return HttpResponse(template.render(context))
 
 def result(request):
 	try:
 		#Get all data treating request like a POST req using request.POST(stuff). If it fails its a GET req
 		#and will go into the except block of code else it will go to the else part of it.
-		random = request.POST("random")
+		random = request.POST("dancePA")
 	except:
 		#display get request result
 		template = loader.get_template('penpals/result.html')
-		return HttpResponse(template.render({}))
+		context = RequestContext(request, {'random' : random,},)
+		return HttpResponse(template.render(context))
 	else:
 		#add entry to db
 		return HttpResponseRedirect(reverse('result')) #Redirect to itself

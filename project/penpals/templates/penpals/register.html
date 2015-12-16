@@ -3,6 +3,161 @@
 {%block body_block%}
 <div class = "container register">
 	<h1>Register here to get yourself a PenPal!</h1>
-	
+	<form class="form-horizontal" action="{%url 'result'%}" method="post" role="form">
+	{%csrf_token%}
+		<label for="name" class="control-label col-lg-2">Name :</label>
+		<div class="col-lg-10">
+			<input type="text" id="name" name="name" placeholder="Enter Name">
+		</div>
+		<label for="address" class="control-label col-lg-2">Address :</label>
+		<div class="col-lg-10">
+			<textarea name="address"></textarea>
+		</div>
+		<div class="col-lg-12 hidden">a</div>
+		<div class="panel-group col-lg-12" id="accordian">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#sports">Games, Sports and Adventure</a>
+					</h3>
+				</div>
+				<div id="sports" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="sports" value="Football"> Football<br>
+						<input type="checkbox" name="sports" value="Cricket"> Cricket<br>
+						<input type="checkbox" name="sports" value="LawnTennis"> Lawn Tennis<br>
+						<input type="checkbox" name="sports" value="TableTennis"> Table Tennis<br>
+						<input type="checkbox" name="sports" value="Basketball"> Basketball<br>
+						<input type="checkbox" name="sports" value="Badminton"> Badminton<br>
+						<input type="checkbox" name="sports" value="PoolSnookerBilliards"> Pool, Snooker, Billiards<br>
+						<input type="checkbox" name="sports" value="CardGames"> Card Games<br>
+						<input type="checkbox" name="sports" value="BoardGames"> Board Games<br>
+						<input type="checkbox" name="sports" value="Gymming"> Gymming<br>
+						<input type="checkbox" name="sports" value="MartialArts"> Martial Arts<br>
+						<input type="checkbox" name="sports" value="Cycling"> Cycling<br>
+						<input type="checkbox" name="sports" value="HikingTrekking"> Hiking, Trekking<br>
+						<input type="checkbox" name="sports" value="AdventureSports"> Adventure Sports<br>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#moviesTV">Movies and TV</a>
+					</h3>
+				</div>
+				<div id="moviesTV" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="moviesTV" value="Romance"> Romance<br>
+						<input type="checkbox" name="moviesTV" value="Romcoms"> Romcoms<br>
+						<input type="checkbox" name="moviesTV" value="Comedies"> Comedies<br>
+						<input type="checkbox" name="moviesTV" value="Thriller"> Crime Suspense Thriller<br>
+						<input type="checkbox" name="moviesTV" value="Action"> Action<br>
+						<input type="checkbox" name="moviesTV" value="SciFi"> Sci-Fi<br>
+						<input type="checkbox" name="moviesTV" value="Anime"> Anime<br>
+						<input type="checkbox" name="moviesTV" value="Cartoons"> Cartoons<br>
+						<input type="checkbox" name="moviesTV" value="Horror"> Horror<br>
+						<input type="checkbox" name="moviesTV" value="Sex"> Sex/Gore<br>
+						<input type="checkbox" name="moviesTV" value="Reality"> Reality TV<br>
+						<input type="checkbox" name="moviesTV" value="Drama"> Drama<br>
+						<input type="checkbox" name="moviesTV" value="Biographies"> Biographies<br>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#dancePA">Dance and Performing Arts</a>
+					</h3>
+				</div>
+				<div id="dancePA" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="dancePA" value="Classical"> Classical<br>
+						<input type="checkbox" name="dancePA" value="Western"> Western<br>
+						<input type="checkbox" name="dancePA" value="SingingInstruments"> Singer, Musician<br>
+						<input type="checkbox" name="dancePA" value="Rapping"> Rapping<br>
+						<input type="checkbox" name="dancePA" value="Filming"> Filming, Acting, Scriptwriting, Directing<br>
+						<input type="checkbox" name="dancePA" value="Fashion"> Fashion<br>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#lit">Literature</a>
+					</h3>
+				</div>
+				<div id="lit" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="lit" value="Romance"> Romance<br>
+						<input type="checkbox" name="lit" value="ShortStories"> Short Stories<br>
+						<input type="checkbox" name="lit" value="Mystery"> Mystery Thrillers<br>
+						<input type="checkbox" name="lit" value="Plays"> Plays<br>
+						<input type="checkbox" name="lit" value="Motivational"> Motivational<br>
+						<input type="checkbox" name="lit" value="Bio"> Biographies, Autobiographies<br>
+						<input type="checkbox" name="lit" value="PhilPsych"> Philosophy, Psychology<br>
+						<input type="checkbox" name="lit" value="Drama"> Drama<br>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#gaming">Gaming</a>
+					</h3>
+				</div>
+				<div id="gaming" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="gaming" value="MMORPG"> MMORPG<br>
+						<input type="checkbox" name="gaming" value="MMORPG"> Strategy<br>
+						<input type="checkbox" name="gaming" value="MMORPG"> MMORPG<br>
+						<input type="checkbox" name="gaming" value="MMORPG"> MMORPG<br>
+						<input type="checkbox" name="gaming" value="MMORPG"> MMORPG<br>
+						<input type="checkbox" name="gaming" value="MMORPG"> MMORPG<br> 
+					</div>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#pfa">Painting and Fine Arts</a>
+					</h3>
+				</div>
+				<div id="pfa" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="pfa" value="Painting"> Painting, Colouring<br>
+						<input type="checkbox" name="pfa" value="Sketching"> Sketching, Doodling<br>
+						<input type="checkbox" name="pfa" value="Graffiti"> Wall Graffiti, Mural<br>
+						<input type="checkbox" name="pfa" value="Photography"> Photography<br>
+						<input type="checkbox" name="pfa" value="Writing"> Creative Writing<br>
+						<input type="checkbox" name="pfa" value="Origami"> Origami and Kirigami<br>
+						<input type="checkbox" name="pfa" value="Design"> Designing, Quilling, Crafts<br>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#music">Music</a>
+					</h3>
+				</div>
+				<div id="music" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="music" value="Party"> Party<br>
+						<input type="checkbox" name="music" value="Rap"> Rap<br>
+						<input type="checkbox" name="music" value="EDM"> EDM<br>
+						<input type="checkbox" name="music" value="Rock"> Rock<br>
+						<input type="checkbox" name="music" value="Metal"> Metal<br>
+						<input type="checkbox" name="music" value="Bollywood"> Bollywood<br>
+						<input type="checkbox" name="music" value="Classical"> Classical, Folk<br>
+						<input type="checkbox" name="music" value="Romantic"> Romantic, Soulful<br>
+						<input type="checkbox" name="music" value="Sad"> Senti, Gloomy, Sad<br>
+					</div>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="accordian" href="#other">Others</a>
+					</h3>
+				</div>
+				<div id="other" class="panel-collapse collapse">
+					<div class="panel-body">
+						<input type="checkbox" name="other" value="Travelling"> Travelling<br>
+						<input type="checkbox" name="other" value="Cooking"> Cooking<br>
+						<input type="checkbox" name="other" value="Collecting"> Collecting<br>
+						<input type="checkbox" name="other" value="Shopping"> Shopping<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button> 
+	</form>
 </div>
 {%endblock%}

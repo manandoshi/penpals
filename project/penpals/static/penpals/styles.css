@@ -1,3 +1,7 @@
 .register{
 	max-width: 900px;
 }
+
+.hidden{
+	visibility: hidden;
+}
