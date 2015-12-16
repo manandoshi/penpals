@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 
-class interests(models.Model)
+class interests(models.Model):
 	name 		= 	models.CharField(max_length = 128)
 	category	=	models.CharField(max_length = 128)
 	#numpeople 	= 	modelsIntegerField()

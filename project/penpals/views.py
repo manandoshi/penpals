@@ -31,7 +31,7 @@ def register(request):
 		context = RequestContext(request, {},)
 		return HttpResponse(template.render(context))
 	else:
-		for i in range(interests.[sports].length):
+		for i in range(interests["sports"].length):
 			assert True
 
 def result(request):
