@@ -2,26 +2,39 @@ from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
+from django.views.generic import View
 from .models import Applicant
+import pdb
 
 # Create your views here.
+#class register(View):
+#	def get(self, request):
+#		super(register, self).__init__()
+		
 
 def register(request):
-	template = loader.get_template('penpals/register.html')
-	context = RequestContext(request, {},)
-	return HttpResponse(template.render(context))
-
-def result(request):
 	try:
-		#Get all data treating request like a POST req using request.POST(stuff). If it fails its a GET req
-		#and will go into the except block of code else it will go to the else part of it.
-		random = request.POST("dancePA")
-	except:
-		#display get request result
-		template = loader.get_template('penpals/result.html')
-		context = RequestContext(request, {'random' : random,},)
+		name 		= 	request.POST["name"]
+		address 	= 	request.POST["address"]
+		interests 	= 	{ 	
+							"sports"	: 	request.POST.getlist("sports"),
+							"moviesTV"	:	request.POST.getlist("moviesTV"),
+							"dancePA"	:	request.POST.getlist("dancePA"),
+							"pfa"		:	request.POST.getlist("pfa"),
+							"lit"		:	request.POST.getlist("lit"),
+							"gaming"	:	request.POST.getlist("gaming"),
+							"music"		:	request.POST.getlist("music"),
+							"other"		:	request.POST.getlist("other"),
+						}
+	except:	
+		template = loader.get_template('penpals/register.html')
+		context = RequestContext(request, {},)
 		return HttpResponse(template.render(context))
 	else:
-		#add entry to db
-		return HttpResponseRedirect(reverse('result')) #Redirect to itself
+		for i in range(interests.[sports].length):
+			assert True
+
+def result(request):
+	template = loader.get_template('penpals/result.html')
+	context = RequestContext(request, {},)
+	return HttpResponse(template.render(context))

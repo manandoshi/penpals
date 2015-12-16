@@ -3,7 +3,7 @@
 {%block body_block%}
 <div class = "container register">
 	<h1>Register here to get yourself a PenPal!</h1>
-	<form class="form-horizontal" action="{%url 'result'%}" method="post" role="form">
+	<form class="form-horizontal" action="{%url 'registerform'%}" method="post" role="form">
 	{%csrf_token%}
 		<label for="name" class="control-label col-lg-2">Name :</label>
 		<div class="col-lg-10">
