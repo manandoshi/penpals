@@ -113,7 +113,10 @@ def register(request):
 		applic = Applicant(name=name, address=address, gender=gender)
 		applic.save()
 		for interest in selectedInterests:
-			i = interests.objects.filter(name=interest)[0]
+			try:
+				i = interests.objects.filter(name=interest)[0]
+			except:
+				pdb.set_trace()
 			applic.interests.add(i);
 		return HttpResponseRedirect('/register')
 
