@@ -1,5 +1,25 @@
 {%extends 'penpals/base.html'%}
 
 {%block body_block%}
-<p>Seriously?</p>
+<table border="2px">
+<tr>
+<th>ID1</th>
+<th>Person1</th>
+<th>Address1</th>
+<th>ID2</th>
+<th>Person2</th>
+<th>Address2</th>
+</tr>
+{%for pairing in outp%}
+<tr>
+	<td> {{pairing.0}} </td>
+	<td> {{pairing.1}} </td>
+	<td> {{pairing.2}} </td>
+	<td> {{pairing.3}} </td>
+	<td> {{pairing.4}} </td>
+	<td> {{pairing.5}} </td>
+</tr>
+{%endfor%}
+</table>
+
 {%endblock%}

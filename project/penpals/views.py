@@ -113,10 +113,7 @@ def register(request):
 		applic = Applicant(name=name, address=address, gender=gender)
 		applic.save()
 		for interest in selectedInterests:
-			try:
-				i = interests.objects.filter(name=interest)[0]
-			except:
-				#pdb.set_trace()
+			i = interests.objects.filter(name=interest)[0]
 			applic.interests.add(i);
 		return HttpResponseRedirect('/register')
 
@@ -132,28 +129,32 @@ def result(request):
 	for interest in interests.objects.all():
 		interest.points = num - len(interest.applicant_set.all())
 		interest.save()
+
 	points = [[0 for i in xrange(n)] for j in xrange(n)]
 	currpairing = [0 for i in xrange(n)]
 	bestpairing = [0 for i in xrange(n)]
 	for i in xrange(num):
 		for j in xrange(i+1,num):
 			if(Applicant.objects.all()[i].gender != Applicant.objects.all()[j].gender):
-				points[int(Applicant.objects.all()[i].id) - 1][int(Applicant.objects.all()[j].id) - 1] += 100;
-				points[int(Applicant.objects.all()[j].id) - 1][int(Applicant.objects.all()[i].id) - 1] += 100;
+				points[int(Applicant.objects.all()[i].id) - 1][int(Applicant.objects.all()[j].id) - 1] += 1000;
+				points[int(Applicant.objects.all()[j].id) - 1][int(Applicant.objects.all()[i].id) - 1] += 1000;
 			for interest in Applicant.objects.all()[i].interests.all():
 				if(len(Applicant.objects.all()[i].interests.filter(name=interest.name))):
-					points[int(Applicant.objects.all()[i].id) - 1][int(Applicant.objects.all()[j].id) - 1] += interest.points
-					points[int(Applicant.objects.all()[j].id) - 1][int(Applicant.objects.all()[i].id) - 1] += interest.points
-	strot = ""
-	for i in xrange(n):
-		for j in xrange(n):
-			strot += str(points[i][j]) + "\t"
-		strot += "<br>"
-	#return HttpResponse(strot)
+					multiplier = 130-1*(len(Applicant.objects.all()[i].interests.all())+len(Applicant.objects.all()[j].interests.all()))
+					points[int(Applicant.objects.all()[i].id) - 1][int(Applicant.objects.all()[j].id) - 1] += interest.points * multiplier
+					points[int(Applicant.objects.all()[j].id) - 1][int(Applicant.objects.all()[i].id) - 1] += interest.points * multiplier
+	# strot = ""
+	# for i in xrange(n):
+	# 	for j in xrange(n):
+	# 		strot += str(points[i][j]) + "\t"
+	# 	strot += "<br>"
+	# #return HttpResponse(strot)
 	apps = Applicant.objects.all()[:]
-	apps2 = Applicant.objects.all()[:]
+	#apps2 = Applicant.objects.all()[:]
 	m, conf = rs(apps, points)
-	return HttpResponse(conf)
-	template = loader.get_template('penpals/result.html')
-	context = RequestContext(request, {},)
-	
+	outp	=	[]
+	for pair in conf:
+		outp.append([pair[0], Applicant.objects.filter(id=pair[0])[0].name, Applicant.objects.filter(id=pair[0])[0].address , pair[1], Applicant.objects.filter(id=pair[1])[0].name, Applicant.objects.filter(id=pair[1])[0].address])
+	template 	= 	loader.get_template('penpals/result.html')
+	context 	= 	RequestContext(request, {"outp": outp},)
+	return HttpResponse(template.render(context))
