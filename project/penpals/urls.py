@@ -21,4 +21,5 @@ from . import views
 urlpatterns = [
 	url(r'^register/$', views.register, name = 'registerform'),
 	url(r'^result/$', views.result, name = 'result'),
+    url(r'^view/$', views.view, name = 'view'),
 ]

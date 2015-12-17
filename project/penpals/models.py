@@ -7,13 +7,17 @@ from django.db import models
 class interests(models.Model):
 	name 		= 	models.CharField(max_length = 128)
 	category	=	models.CharField(max_length = 128)
-	#numpeople 	= 	modelsIntegerField()
+	points		=	models.IntegerField(default = 0)
+	def __str__(self):
+		return self.name
 
 class Applicant(models.Model):
 	name 		= 	models.CharField(max_length = 128)
 	address 	= 	models.TextField()
 	gender 		= 	models.CharField(max_length = 15)
 	interests	=	models.ManyToManyField(interests)
+	def __str__(self):
+		return self.name
 	# sports 		= 	models.CommaSeparatedIntegerField(max_length = 20)
 	# moviesTV 	= 	models.CommaSeparatedIntegerField(max_length = 20)
 	# dancePA 	= 	models.CommaSeparatedIntegerField(max_length = 20)
