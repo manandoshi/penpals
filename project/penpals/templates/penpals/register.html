@@ -5,20 +5,31 @@
 	<h1>Register here to get yourself a PenPal!</h1>
 	<form class="form-horizontal" action="{%url 'registerform'%}" method="post" role="form">
 	{%csrf_token%}
-		<label for="name" class="control-label col-lg-2">Name :</label>
-		<div class="col-lg-10">
-			<input type="text" id="name" name="name" placeholder="Enter Name">
+		<div class="form-group">
+			<label for="name" class="control-label col-md-2">Name :</label>
+			<div class="col-md-10">
+				<input class="col-md-6" type="text" id="name" name="name" placeholder="Enter Name">
+			</div>
 		</div>
-		<label for="address" class="control-label col-lg-2">Address :</label>
-		<div class="col-lg-10">
-			<textarea name="address"></textarea>
+		<div class="form-group">
+			<label for="address" class="control-label col-md-2">Address :</label>
+			<div class="col-md-10">
+				<textarea class="col-md-8" name="address" placeholder="Enter Postal Address to receive letters"></textarea>
+			</div>
 		</div>
-		<label for="rad" class="control-label col-lg-2">Gender :</label>
-		<div class="radio radio-inline">
-			<label><input type="radio" id="rad" name="gender" value="M"> Male</label>
-			<label><input type="radio" id="rad" name="gender" value="F"> Female</label>
+		<div class="form-group">
+			<label for="age" class="control-label col-md-2">Age :</label>
+			<div class="col-md-1">
+				<input class="col-md-1" type="text" id="age" name="age" placeholder="18">
+			</div>
 		</div>
-		<div class="col-lg-12 hidden">a</div>
+		<div class="form-group">
+			<label for="rad" class="control-label col-md-2">Gender: </label>
+			<div class="radio radio-inline">
+				<label><input type="radio" id="rad" name="gender" value="M"> Male</label>
+				<label><input type="radio" id="rad" name="gender" value="F"> Female</label>
+			</div>
+		</div>
 		<div class="panel-group col-lg-12" id="accordian">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
