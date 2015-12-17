@@ -18,60 +18,91 @@ n 	= (Applicant.objects.all().order_by("-id")[0].id)
 currpairing = [0 for i in xrange(n)]
 bestpairing = [0 for i in xrange(n)]
 
-def rs(apps, points, currpairing, bestpairing):
-		mx = 0
-		pt = 0
+# def rs(apps, points, currpairing, bestpairing):
+# 		mx = 0
+# 		pt = 0
 
-		if(len(apps) == 1):
-			return 0
+# 		if(len(apps) == 1):
+# 			return 0
 		
-		if(len(apps) == 2):
-			currpairing[(currpairing[int(apps[0].id) - 1])-1]	=	0
-			currpairing[(currpairing[int(apps[1].id) - 1])-1]	=	0
-			currpairing[int(apps[0].id) - 1] 					= 	apps[1].id
-			currpairing[int(apps[1].id) - 1]					= 	apps[0].id
-			return points[int(apps[0].id)-1][int(apps[1].id)-1]
+# 		if(len(apps) == 2):
+# 			currpairing[(currpairing[int(apps[0].id) - 1])-1]	=	0
+# 			currpairing[(currpairing[int(apps[1].id) - 1])-1]	=	0
+# 			currpairing[int(apps[0].id) - 1] 					= 	apps[1].id
+# 			currpairing[int(apps[1].id) - 1]					= 	apps[0].id
+# 			return points[int(apps[0].id)-1][int(apps[1].id)-1]
 		
-		for x in xrange(1,len(apps)):
+# 		for x in xrange(1,len(apps)):
 			
-			a0 		= 	apps[0]
-			ax 		= 	apps[x]
-			apps 	= 	apps[1:x] + apps[x+1:]
-			#pdb.set_trace();
-			pt = points[int(a0.id)-1][int(ax.id)-1] + rs(apps,points, currpairing, bestpairing)
+# 			a0 		= 	apps[0]
+# 			ax 		= 	apps[x]
+# 			apps 	= 	apps[1:x] + apps[x+1:]
+# 			#pdb.set_trace();
+# 			pt = points[int(a0.id)-1][int(ax.id)-1] + rs(apps,points, currpairing, bestpairing)
 			
-			currpairing[(currpairing[int(a0.id) - 1])-1]=0
-			currpairing[(currpairing[int(ax.id) - 1])-1]=0
-			currpairing[int(a0.id) - 1] = ax.id
-			currpairing[int(ax.id) - 1]	= a0.id
-			#pdb.set_trace();
+# 			currpairing[(currpairing[int(a0.id) - 1])-1]=0
+# 			currpairing[(currpairing[int(ax.id) - 1])-1]=0
+# 			currpairing[int(a0.id) - 1] = ax.id
+# 			currpairing[int(ax.id) - 1]	= a0.id
+# 			#pdb.set_trace();
 			
-			if (pt > mx):
-				mx	=	pt
-				if(mx == 160):
-					pdb.set_trace();
-				if (int(a0.id) == int(Applicant.objects.all()[0].id)):
-					#pdb.set_trace();
-					for i in range(len(currpairing)):
-						bestpairing[i] = currpairing[i]
+# 			if (pt > mx):
+# 				mx	=	pt
+# 				if(mx == 160):
+# 					pdb.set_trace();
+# 				if (int(a0.id) == int(Applicant.objects.all()[0].id)):
+# 					#pdb.set_trace();
+# 					for i in range(len(currpairing)):
+# 						bestpairing[i] = currpairing[i]
 			
-			currpairing[int(a0.id) - 1] = 0
-			currpairing[int(ax.id) - 1]	= 0
-			apps = [a0] + apps[0:x-1] + [ax] + apps[x-1:]
+# 			currpairing[int(a0.id) - 1] = 0
+# 			currpairing[int(ax.id) - 1]	= 0
+# 			apps = [a0] + apps[0:x-1] + [ax] + apps[x-1:]
 		
-		apps = apps [1:]
-		pt = rs(apps,points, currpairing, bestpairing)
-		currpairing[a0.id-1] = 0
-		if (pt > mx):
-				mx	=	pt
-				if (int(a0.id) == int(Applicant.objects.all()[0].id)):
-					for i in range(len(currpairing)):
-						bestpairing[i] = currpairing[i]
-		apps = [a0] + apps[:]
+# 		apps = apps [1:]
+# 		pt = rs(apps,points, currpairing, bestpairing)
+# 		currpairing[a0.id-1] = 0
+# 		if (pt > mx):
+# 				mx	=	pt
+# 				if (int(a0.id) == int(Applicant.objects.all()[0].id)):
+# 					for i in range(len(currpairing)):
+# 						bestpairing[i] = currpairing[i]
+# 		apps = [a0] + apps[:]
 
-		return mx
+# 		return mx
 
-	
+def rs(apps,points):
+	mxval = 0
+	mxconfig = []
+	if (len(apps)==1):
+		return 0,[]
+	if (len(apps)==2):
+		return points[int(apps[0].id)-1][int(apps[1].id)-1] , [apps[0].id, apps[1].id]
+	else:
+		for x in xrange(0,len(apps)):
+			flg = False
+			a0 				= 	apps[0]
+ 			ax 				= 	apps[x]
+			if x < len(apps) - 1:
+				apps 			= 	apps[1:x] + apps[x+1:]
+			else:
+				apps 			=	apps[1:x]
+				flg				=	True
+			#pdb.set_trace()
+			pt 				= 	points[ int(a0.id)-1 ][ int(ax.id)-1 ]
+			pval, pconfig 	=	rs(apps, points)
+			
+			if(pt+pval > mxval):
+				mxval 		= pt + pval
+				mxconfig	= pconfig
+				mxconfig.append([a0.id, ax.id])
+			if(not flg):
+				apps = [a0] + apps[:x-1]+ [ax] + apps[x-1:]
+			else:
+				apps = [a0] + apps[:x-1]+ [ax]
+		return mxval, mxconfig
+
+
 
 def register(request):
 	try:
@@ -135,9 +166,8 @@ def result(request):
 	#return HttpResponse(strot)
 	apps = Applicant.objects.all()[:]
 	apps2 = Applicant.objects.all()[:]
-		
-	m = rs(apps, points,currpairing, bestpairing)
-	return HttpResponse(bestpairing)
+	m, conf = rs(apps, points)
+	return HttpResponse(conf)
 	template = loader.get_template('penpals/result.html')
 	context = RequestContext(request, {},)
 	

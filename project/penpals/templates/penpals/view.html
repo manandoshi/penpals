@@ -1,0 +1,20 @@
+{%extends 'penpals/base.html'%}
+
+{%block body_block%}
+<table border="1">
+	<tr>
+		<th>Name</th>
+		<th>Addr</th>
+		<th>Gender</th>
+	</tr>
+	{%for app in applic%}
+		<tr>
+			<td>{{app.name}}</td>
+			<td>{{app.address}}</td>
+			<td>{{app.gender}}</td>
+			<td>{{app.interests.all}}</td>
+		</tr>
+	{%endfor%}
+	
+</table>
+{%endblock%}
