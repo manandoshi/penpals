@@ -78,7 +78,7 @@ def rs(apps,points):
 			appsp 			= 	apps[1:x] + apps[x+1:]
 			
 			pt 				= 	points[ int(a0.id)-1 ][ int(ax.id)-1 ]
-			pdb.set_trace()
+			#pdb.set_trace()
 			pval, pconfig 	=	rs(appsp, points)
 			if(pt+pval > mxval):
 				mxval 		= pt + pval
@@ -116,7 +116,7 @@ def register(request):
 			try:
 				i = interests.objects.filter(name=interest)[0]
 			except:
-				pdb.set_trace()
+				#pdb.set_trace()
 			applic.interests.add(i);
 		return HttpResponseRedirect('/register')
 
