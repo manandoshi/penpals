@@ -75,31 +75,24 @@ def rs(apps,points):
 	mxval = 0
 	mxconfig = []
 	if (len(apps)==1):
-		return 0,[]
+		return 0,[apps[0].id, apps[0].id]
 	if (len(apps)==2):
 		return points[int(apps[0].id)-1][int(apps[1].id)-1] , [apps[0].id, apps[1].id]
 	else:
 		for x in xrange(0,len(apps)):
-			flg = False
 			a0 				= 	apps[0]
  			ax 				= 	apps[x]
 			if x < len(apps) - 1:
-				apps 			= 	apps[1:x] + apps[x+1:]
+				appsp 			= 	apps[1:x] + apps[x+1:]
 			else:
-				apps 			=	apps[1:x]
-				flg				=	True
-			#pdb.set_trace()
+				appsp 			=	apps[1:x]
 			pt 				= 	points[ int(a0.id)-1 ][ int(ax.id)-1 ]
-			pval, pconfig 	=	rs(apps, points)
-			
+			pdb.set_trace()
+			pval, pconfig 	=	rs(appsp, points)
 			if(pt+pval > mxval):
 				mxval 		= pt + pval
 				mxconfig	= pconfig
 				mxconfig.append([a0.id, ax.id])
-			if(not flg):
-				apps = [a0] + apps[:x-1]+ [ax] + apps[x-1:]
-			else:
-				apps = [a0] + apps[:x-1]+ [ax]
 		return mxval, mxconfig
 
 
