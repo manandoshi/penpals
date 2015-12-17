@@ -10,13 +10,6 @@ import pdb
 #class register(View):
 #	def get(self, request):
 #		super(register, self).__init__()
-		
-p = 0
-currpairing = []
-bestpairing = []
-n 	= (Applicant.objects.all().order_by("-id")[0].id)
-currpairing = [0 for i in xrange(n)]
-bestpairing = [0 for i in xrange(n)]
 
 # def rs(apps, points, currpairing, bestpairing):
 # 		mx = 0
@@ -75,24 +68,21 @@ def rs(apps,points):
 	mxval = 0
 	mxconfig = []
 	if (len(apps)==1):
-		return 0,[apps[0].id, apps[0].id]
+		return 0,[[apps[0].id, apps[0].id]]
 	if (len(apps)==2):
-		return points[int(apps[0].id)-1][int(apps[1].id)-1] , [apps[0].id, apps[1].id]
+		return points[int(apps[0].id)-1][int(apps[1].id)-1] , [[apps[0].id, apps[1].id]]
 	else:
 		for x in xrange(0,len(apps)):
 			a0 				= 	apps[0]
  			ax 				= 	apps[x]
-			if x < len(apps) - 1:
-				appsp 			= 	apps[1:x] + apps[x+1:]
-			else:
-				appsp 			=	apps[1:x]
+			appsp 			= 	apps[1:x] + apps[x+1:]
+			
 			pt 				= 	points[ int(a0.id)-1 ][ int(ax.id)-1 ]
 			pdb.set_trace()
 			pval, pconfig 	=	rs(appsp, points)
 			if(pt+pval > mxval):
 				mxval 		= pt + pval
-				mxconfig	= pconfig
-				mxconfig.append([a0.id, ax.id])
+				mxconfig	= pconfig[:] + [[a0.id, ax.id]]
 		return mxval, mxconfig
 
 
