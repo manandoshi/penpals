@@ -93,7 +93,10 @@ def register(request):
 		address 			= 	request.POST["address"]
 		gender				=	request.POST["gender"]
 		selectedInterests 	=	request.POST.getlist("interests")
-		#return HttpResponse(selectedInterests[1])
+		try:
+			age				=	int(request.POST.getlist("age"))
+		except:
+			return HttpResponseRedirect('/register')
 		
 		# selectedIntrests 	= 	{ 	
 		# 							"sports"	: 	request.POST.getlist("sports"),
@@ -135,9 +138,10 @@ def result(request):
 	bestpairing = [0 for i in xrange(n)]
 	for i in xrange(num):
 		for j in xrange(i+1,num):
-			if(Applicant.objects.all()[i].gender != Applicant.objects.all()[j].gender):
-				points[int(Applicant.objects.all()[i].id) - 1][int(Applicant.objects.all()[j].id) - 1] += 1000;
-				points[int(Applicant.objects.all()[j].id) - 1][int(Applicant.objects.all()[i].id) - 1] += 1000;
+			if((Applicant.objects.all()[i].gender != Applicant.objects.all()[j].gender)):
+				if ((Applicant.objects.all()[i].gender == "M" and Applicant.objects.all()[i].age >= Applicant.objects.all()[j].age and Applicant.objects.all()[j].age >= (Applicant.objects.all()[i].age/2 + 7))or(Applicant.objects.all()[j].gender == "M" and Applicant.objects.all()[j].age >= Applicant.objects.all()[i].age and Applicant.objects.all()[i].age >= (Applicant.objects.all()[j].age/2 + 7))):
+					points[int(Applicant.objects.all()[i].id) - 1][int(Applicant.objects.all()[j].id) - 1] += 1000;
+					points[int(Applicant.objects.all()[j].id) - 1][int(Applicant.objects.all()[i].id) - 1] += 1000;
 			for interest in Applicant.objects.all()[i].interests.all():
 				if(len(Applicant.objects.all()[i].interests.filter(name=interest.name))):
 					multiplier = 130-1*(len(Applicant.objects.all()[i].interests.all())+len(Applicant.objects.all()[j].interests.all()))
